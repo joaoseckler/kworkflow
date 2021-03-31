@@ -1,15 +1,15 @@
 #!/bin/bash
 
-. ./tests/utils --source-only
-. ./src/kwio.sh --source-only
-. ./src/kwlib.sh --source-only
+include "./tests/utils"
+include "./src/kwio.sh"
+include "./src/kwlib.sh"
 
 # NOTE: All executions off 'alert_completion' in this test file must be done
 # inside a subshell (i.e. "$(alert_completion ...)"), because this function
 # invokes other commands in the background. So if not done inside a subshell,
 # the function will return before the background commands finish.
 
-declare -A configurations
+declare -gA configurations
 sound_file="$PWD/tests/.kwio_test_aux/sound.file"
 visual_file="$PWD/tests/.kwio_test_aux/visual.file"
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ./tests/utils --source-only
-. ./kw --source-only > /dev/null
+include "./tests/utils"
+include "./kw"
 
 function suite
 {

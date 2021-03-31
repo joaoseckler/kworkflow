@@ -11,7 +11,7 @@ function suite
   suite_addTest 'generate_arch_temporary_root_file_system_Test'
 }
 
-declare -r TEST_ROOT_PATH="$PWD"
+declare -gr TEST_ROOT_PATH="$PWD"
 
 function setUp
 {

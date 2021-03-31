@@ -180,6 +180,13 @@ $PATH, you should use 'type ', instead of 'which '.
 The output of 'which' is not machine parsable and its exit code
 is not reliable across platforms.
 
+Sourcing files
+---------------
+Do not source code using `.` or `source`.
+We have a helper function for that named `include` in `include.sh` and it
+should be used any and everytime a file needs to be sourced,
+`.file.sh --source-only` should only be used to source `include.sh` itself.
+
 Test name
 ---------
 

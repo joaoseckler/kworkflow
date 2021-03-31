@@ -10,7 +10,7 @@ function suite
   suite_addTest 'update_debian_boot_loader_Test'
 }
 
-declare -r TEST_ROOT_PATH="$PWD"
+declare -gr TEST_ROOT_PATH="$PWD"
 
 function setUp
 {

@@ -12,41 +12,41 @@ VERBOSE=0
 FORCE=0
 PREFIX="$HOME/.local"
 
-declare -r app_name="kw"
+declare -gr app_name="kw"
 
 ##
 ## Following are the install paths
 ##
 # Paths used during the installation process
-declare -r kwbinpath="$PREFIX/bin/kw"
-declare -r binpath="$PREFIX/bin"
-declare -r libdir="$PREFIX/lib/$app_name"
-declare -r sharedir="$PREFIX/share/"
-declare -r sharedocdir="$sharedir/doc"
-declare -r sharemandir="$sharedir/man"
-declare -r sharesounddir="$sharedir/sound/kw"
-declare -r etcdir="$PREFIX/etc/kw"
+declare -gr kwbinpath="$PREFIX/bin/kw"
+declare -gr binpath="$PREFIX/bin"
+declare -gr libdir="$PREFIX/lib/$app_name"
+declare -gr sharedir="$PREFIX/share/"
+declare -gr sharedocdir="$sharedir/doc"
+declare -gr sharemandir="$sharedir/man"
+declare -gr sharesounddir="$sharedir/sound/kw"
+declare -gr etcdir="$PREFIX/etc/kw"
 # User specific data
-declare -r datadir="$HOME/.$app_name"
-declare -r cachedir="$HOME/.cache/$app_name"
+declare -gr datadir="$HOME/.$app_name"
+declare -gr cachedir="$HOME/.cache/$app_name"
 
 ##
 ## Source code references
 ##
-declare -r SRCDIR="src"
-declare -r MAN="documentation/man/"
-declare -r CONFIG_DIR="etc"
-declare -r INSTALLTO="$PREFIX"
-declare -r KW_CACHE_DIR="$HOME/.cache/$app_name"
+declare -gr SRCDIR="src"
+declare -gr MAN="documentation/man/"
+declare -gr CONFIG_DIR="etc"
+declare -gr INSTALLTO="$PREFIX"
+declare -gr KW_CACHE_DIR="$HOME/.cache/$app_name"
 
-declare -r SOUNDS="sounds"
-declare -r BASH_AUTOCOMPLETE="bash_autocomplete"
-declare -r DOCUMENTATION="documentation"
+declare -gr SOUNDS="sounds"
+declare -gr BASH_AUTOCOMPLETE="bash_autocomplete"
+declare -gr DOCUMENTATION="documentation"
 
-declare -r FISH_CONFIG_PATH="$HOME/.config/fish"
-declare -r FISH_COMPLETION_PATH="$FISH_CONFIG_PATH/completions"
+declare -gr FISH_CONFIG_PATH="$HOME/.config/fish"
+declare -gr FISH_COMPLETION_PATH="$FISH_CONFIG_PATH/completions"
 
-declare -r CONFIGS_PATH="configs"
+declare -gr CONFIGS_PATH="configs"
 
 function check_dependencies()
 {

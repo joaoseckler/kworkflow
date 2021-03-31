@@ -1,7 +1,7 @@
 #!/bin/bash
 
-. ./tests/utils --source-only
-. ./src/explore.sh --source-only
+include "./tests/utils"
+include "./src/explore.sh"
 
 function suite
 {
@@ -12,10 +12,10 @@ function suite
   suite_addTest "explore_git_Test"
 }
 
-declare -r test_path="tests/.tmp"
+declare -gr test_path="tests/.tmp"
 
 # Note: these file names came from tests/samples/
-declare -a samples_names=(
+declare -ga samples_names=(
   "codestyle_check.c"
   "codestyle_correct.c"
   "codestyle_error.c"

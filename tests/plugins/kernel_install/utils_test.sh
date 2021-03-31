@@ -20,7 +20,7 @@ function suite
   suite_addTest 'install_kernel_vm_Test'
 }
 
-declare -r TEST_ROOT_PATH="$PWD"
+declare -gr TEST_ROOT_PATH="$PWD"
 
 function setUp
 {
