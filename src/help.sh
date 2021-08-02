@@ -38,7 +38,7 @@ function kworkflow_help()
 # installed to the system
 function kworkflow_man()
 {
-  doc="$KW_SHARE_MAN_DIR"
+  doc="$KW_MAN_DIR"
   ret=0
 
   if ! man kw > /dev/null 2>&1; then

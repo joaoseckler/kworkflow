@@ -125,9 +125,22 @@ function parse_configuration()
 # higher level setting definitions to overwrite lower level ones.
 function load_configuration()
 {
-  parse_configuration "$KW_ETC_DIR/$CONFIG_FILENAME"
-  parse_configuration "$HOME/.kw/$CONFIG_FILENAME"
-  parse_configuration "$PWD/$CONFIG_FILENAME"
+  local -a config_dirs
+  local config_home
+
+  config_home="${XDG_CONFIG_HOME:-"$HOME/.config"}/kw"
+  read -r -d ':' -a config_dirs <<< "${XDG_CONFIG_DIRS:-"/etc/xdg"}"
+
+  # echo "pwd: $PWD, config_home: $config_home, config_dirs: $config_dirs,"
+  # echo "etc: $KW_ETC_DIR"
+
+  for folder in "$PWD" "$config_home" "${config_dirs[@]/%/"/kw"}" \
+    "$KW_ETC_DIR"; do
+    if [[ -f "$folder/$CONFIG_FILENAME" ]]; then
+      parse_configuration "$folder/$CONFIG_FILENAME"
+      return
+    fi
+  done
 }
 
 # Every time that "kw_config_loader.sh" is included, the configuration file has

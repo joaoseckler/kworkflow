@@ -38,8 +38,8 @@ function test_init_kw()
   assertEquals "($ID)" "$USER" "$kworkflow_content"
 
   ID=2
-  kworkflow_content=$(grep "$KW_SHARE_SOUND_DIR" -o "$path_config" | head -n 1)
-  assertEquals "($ID)" "$KW_SHARE_SOUND_DIR" "$kworkflow_content"
+  kworkflow_content=$(grep "$KW_SOUND_DIR" -o "$path_config" | head -n 1)
+  assertEquals "($ID)" "$KW_SOUND_DIR" "$kworkflow_content"
 
   ID=3
   export KW_ETC_DIR="break/on/purpose"

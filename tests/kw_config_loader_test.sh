@@ -121,9 +121,8 @@ function test_parse_configuration_standard_config()
 
 function test_parse_configuration_files_loading_order()
 {
-  expected="$KW_ETC_DIR/$CONFIG_FILENAME
-$HOME/.kw/$CONFIG_FILENAME
-$PWD/$CONFIG_FILENAME"
+  local expected="$PWD/$CONFIG_FILENAME"
+  local original_dir="$PWD"
 
   output="$(
     function parse_configuration()
@@ -132,11 +131,56 @@ $PWD/$CONFIG_FILENAME"
     }
     load_configuration
   )"
+  assertEquals "($LINENO) Wrong config file reading order." "$expected" "$output"
 
-  expected_vs_got="Expected:\n>>>$expected<<<\nGot:\n>>>$output<<<"
+  cd "$SHUNIT_TMPDIR" || {
+    fail "($LINENO) It was nos possible to move to temporary directory"
+    return
+  }
+  mkdir -p kw
+  touch "kw/$CONFIG_FILENAME"
 
-  [[ "$output" == "$expected" ]]
-  assertTrue "Wrong config file reading order.\n$expected_vs_got" $?
+  XDG_CONFIG_DIRS="$(realpath ../)"
+  XDG_CONFIG_HOME="$(realpath ./)"
+  expected="$XDG_CONFIG_HOME/kw/$CONFIG_FILENAME"
+  output="$(
+    function parse_configuration()
+    {
+      echo "$@"
+    }
+    load_configuration
+  )"
+  assertEquals "($LINENO) Wrong config file reading order." "$expected" "$output"
+
+  XDG_CONFIG_DIRS="$(realpath ./)"
+  XDG_CONFIG_HOME="$(realpath ../)"
+
+  expected="$XDG_CONFIG_DIRS/kw/$CONFIG_FILENAME"
+  output="$(
+    function parse_configuration()
+    {
+      echo "$@"
+    }
+    load_configuration
+  )"
+  assertEquals "($LINENO) Wrong config file reading order." "$expected" "$output"
+
+  KW_ETC_DIR="$XDG_CONFIG_DIRS/kw"
+  XDG_CONFIG_DIRS="$(realpath ..)"
+  expected="$KW_ETC_DIR/$CONFIG_FILENAME"
+  output="$(
+    function parse_configuration()
+    {
+      echo "$@"
+    }
+    load_configuration
+  )"
+  assertEquals "($LINENO) Wrong config file reading order." "$expected" "$output"
+
+  cd "$original_dir" || {
+    fail "($LINENO) It was nos possible to move back to original directory"
+    return
+  }
 }
 
 function test_show_variables_completeness()
