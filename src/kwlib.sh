@@ -371,3 +371,24 @@ function exit_msg()
   complain "$msg"
   exit "$err"
 }
+
+# This function parses command line arguments. Each option may be
+# followed by a one colon to indicate it has a required argument, and by
+# two colons to indicate it has an optional argument. If any errors are
+# found, this will print an error message to stderr indicating it.
+#
+# @short_options Short options to be accepted
+# @long_options Long options to be accepted
+# @{@:2} Arguments to be parsed
+#
+function kw_parse()
+{
+  local short_options="$1"
+  local long_options="$2"
+  shift 2
+
+  getopt --name "kw" \
+    --options "$short_options" \
+    --longoptions "$long_options" \
+    -- "$@"
+}
