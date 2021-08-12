@@ -624,7 +624,7 @@ function test_kernel_uninstall()
   local rsync_utils="$rsync_cmd $kernel_install_path/utils.sh $remote_access:$remote_path/ --rsync-path='sudo rsync'"
   local cmd_chown_utils="$ssh_cmd $remote_access sudo \"chown -R root:root $remote_path/\""
 
-  local kernel_uninstall_cmd="ss -p 3333 juca@127.0.0.1 sudo \"$cmd\""
+  local kernel_uninstall_cmd="ssh -p 3333 juca@127.0.0.1 sudo \"$cmd\""
 
   declare -a expected_cmd=(
     "$dir_kw_deploy"

@@ -132,7 +132,7 @@ need root access. 'kw deploy –local' should not be executed with sudo or root.
   specific target, and finally umounts the QEMU image.
 
 COMMANDS FOR WORKING WITH CODE
-------------------------------
+---------------------
 Projects that have a similar workflow to the Linux Kernel usually have a set of
 tools that simplify part of the tasks related with the code. This section
 describes some of the key features supported by **kw** to help with code.
